@@ -1,74 +1,22 @@
-// import logo from './logo.svg';
-import './App.css';
-import Info from './Info';
-// import  PropTypes  from 'prop-types';
+
 import { useState } from 'react';
+import './App.css';
+import SearchBar from './SearchBar';
 function App() {
+  const [data, setData] = useState({});
+  const updateData = (searchParams) => {
+    setData(searchParams);
+  };
   return (
     <div className="App">
-    
-      {/* <Info /> */}
-      <ButtonState/>
+      <SearchBar callBack={updateData} />
+      <h3>Name: { "name" in data ? data["name"] : "No Data to display"}</h3>
+      <h3>Max-price: { "price" in data ? data["price"] : "No Data to display"}</h3>
+      <h3>Type: { "type" in data ? data["type"] : "No Data to display"}</h3>
+      <h3>Brand: { "brand" in data ? data["brand"] : "No Data to display"}</h3>
     </div>
   );
 }
  
-function ButtonState() {
-  const [title, setTitle] = useState("");
-  const [count, setCount] = useState(0)
-  
-  const updateCounter = () => {
-    setCount(count + 1);
-   
-  } 
-  const updateTitle = () => {
-    setTitle("We have new title now");
-  }
-  const decrementCounter = () => {
-    setCount(count - 1);
-  }
-  const resetCounter = () => {
-    setCount(0)
-  }
-  return (
-    <div>
-      <Info title = {title}/>
-      <Data title={title} count={count} />
-      <button onClick={updateTitle}>UpdateTitle</button>
-      <button onClick={updateCounter}>UpdateCounter</button>
-      <button onClick={decrementCounter}>DecrementCounter</button>
-      <button onClick={resetCounter}>ResetCounter</button>
-    </div>
-  );
-}
 
-function Data(props) {
-  return (<div>
-    <p>Title: {props.title}</p>
-    <p>Count: {props.count}</p>
-  </div>);
-};
-// function AddItem(props) {
-//   // const value = "Team is great"
-//   return (
-//     <form>
-      
-//       <label for="text-form">
-//         Type something:
-//       </label>
-//       <input type="text" id="text-form" value={props.text}></input>
-//       <p>{props.number}</p>
-        
-//     </form>
-    
-//   )
-// }
-// AddItem.defaultProps = {
-//   text: "Default",
-//   number: 0,
-// };
-
-// AddItem.propTypes = {
-//   number: PropTypes.number,
-// }
 export default App;
